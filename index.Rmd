@@ -1,0 +1,32 @@
+# Mobile Debug for videojs
+
+The video to be played in this player is sourced from here: `https://data.caltech.edu/tindfiles/serve/5984a5e1-7437-4a45-b242-0ea7746cf420/`
+
+The steps to source the video is as follows:
+
+1. Call R binding with doi
+2. Call JS binding with doi
+3. Call CL.doi_media with doi
+4. CL.doi_media will make http get to fetch url of video source using given doi
+5. doivideo will create HTML element with video which has src equal to above url
+
+In addition, it seems there is an additional step:
+
+6. The url used for the src does not seem like the url to the actual video. Instead, it seems similar to the doivideo retrieval in a sense that the url seems to redirect to another url which is the actual download url for the desired video
+
+For this video, the actual download url is: `https://tind-caltechdata.s3.amazonaws.com/ac0e101cdb4f4363b548f029abcb1e89?Signature=30B4nkuSIWZMgliShcmr5mZeG8A%3D&Expires=1604076910&AWSAccessKeyId=AKIAJSK7IFF5HDDM5UBQ&response-content-disposition=attachment%3Bfilename%3D%222_1_Mgenitalium.mp4%22&response-content-type=application/force-download`
+
+The given error from videojs is:
+`ERROR: (CODE: 4 MEDIA_ERR_SRC_NOT_SUPPORTED) The media could not be loaded...`
+
+## doivideo with videojs
+``` {R echo = FALSE}
+library(doivideo)
+doivideo('10.22002/D1.1350',0)
+```
+
+## primvideo with videojs
+```{R echo = FALSE}
+library(primvideo)
+primvideo("/test-video.mp4", "video/mp4")
+```

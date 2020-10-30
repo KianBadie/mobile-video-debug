@@ -1,0 +1,10 @@
+Package: primvideo
+Title: Primitive video widget with videojs
+Version: 0.0.0
+Description: Embed video player that takes a url.
+Imports:
+    htmlwidgets
+License: BSD-3-Clause
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.1.1
